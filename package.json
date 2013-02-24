@@ -8,7 +8,7 @@
   },
   "repository": "",
   "author": "",
-  "license": "BSD",
+  "license": "GPLv3",
   "dependencies": {
     "ref-struct": "0.0.5",
     "ref": "~0.1.3",
