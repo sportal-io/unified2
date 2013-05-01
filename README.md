@@ -27,7 +27,7 @@ parser.on('error', function(error) {
   // error
 });
 
-parser.on('nodata', function() {
+parser.on('eof', function() {
   // triggered when an EOF (no data is received).  Useful to save a bookmark
   // when you are running in tail mode (see below).
 
@@ -51,7 +51,7 @@ Simply pass `tail: true` in the options for the parser to wait for more logs, e.
 
 ```js
 var unified2 = require('unified2');
-parser = new unified2unified2.Parser('unified2.alert.14560142132', { offset: 0, tail: true });
+parser = new unified2.Parser('unified2.alert.14560142132', { offset: 0, tail: true });
 ...
 parser.run();
 ```
