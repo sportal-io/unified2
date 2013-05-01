@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
-  "author": "",
+  "repository": "https://github.com/packetstash/unified2.git",
+  "author": "Jen Andre <jandre@gmail.com>",
   "license": "GPLv3",
   "dependencies": {
     "ref-struct": "0.0.5",
