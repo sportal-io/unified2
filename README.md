@@ -1,6 +1,9 @@
 # Unified2
 
-A small library for unified2 parsing in node.js.  
+A small library for unified2 parsing in node.js.  Unified2 is a common output 
+format for network intrusion detection devices such as Snort + Suricata.
+
+See Sourcefire's documentation for the unified2 protocol: http://manual.snort.org/node44.html
 
 ## Installation
 
@@ -22,6 +25,12 @@ parser.on('data', function(data) {
 
 parser.on('error', function(error) {
   // error
+});
+
+parser.on('nodata', function() {
+  // triggered when an EOF (no data is received).  Useful to save a bookmark
+  // when you are running in tail mode (see below).
+
 });
 
 parser.on('rollover', function() {
@@ -49,11 +58,19 @@ parser.run();
 
 To stop the parser, you can do `parser.stop()` which will trigger an end event.
 
+### Bookmark
+
+To read the current bookmark, you can use `parser.last_read_position`,
+which is the offset after the last read unified2 event. Useful after a 'nodata'
+event or 'end' event if you wish to resume parsing again later,
+you can pass this into the `offset: <value>` parameter in the Parser
+constructor.
+
 ### Debug logging
 
 pass in `DEBUG=unified2` as an environment variable to turn on debug logging.
 
-### Is it fast? This is javascript after all.
+## Is it fast? This is javascript after all.
 
 Pretty fast!  IO is async too, so by parallelizing parsers you can increase performance.
 
@@ -63,6 +80,18 @@ Here's reading ~4.6 MB and writing parsed objects (~34MB) to stdout.
 unified2 (master*) $ time node tests/test.js > /tmp/test.js.output                                                                                                                                                                ~/src/unified2
 node tests/test.js > /tmp/test.js  12.16s user 0.84s system 103% cpu 12.621 total
 ```
+## Missing?
+
+Right now, this is just a bare bones parser. E.g., the pcaps and extra data 
+are not correlated with the ids event messages.  This is intentional.  
+
+I'll be releasing a nice utility that does this, plus all of the fancy stuff 
+like monitor directories with blob support with output plugins similar 
+to Barnyard2 in the very near future.
+
+## Bug Reporting
+
+Please use Github or email support@threatstack.com.  
 
 ## License
 
