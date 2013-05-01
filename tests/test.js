@@ -4,18 +4,29 @@ var fs = require('fs');
 var ref = require('ref');
 var typedefs = definitions.typedefs;
 var ip = require('ip');
-//var fd = fs.openSync('unified2.file', 'r');
+var path = require('path');
 
-//testReadHeader(0);
-//
-var parser = new Parser('unified2.file');
-
-parser.on('data', function(data) {
-  // if (data.header.type == 110) {
-
-    // var buf = data.data.source_ip.u6_addr32.buffer;
-    // console.log("XXX", buf, buf.length, ip.toString(buf, 0, buf.length));
+function testUnified2(file) {
+  var parser = new Parser(file);
   
-  // }
-});
-parser.run();
+  parser.on('data', function(data) {
+    console.log(data);
+    // TODO: other things?
+  });
+
+  parser.on('error', function(err) {
+    throw err;
+  })
+
+  parser.on('end', function(data) {
+    console.log("Ended:", data);
+  });
+
+
+  parser.run();
+
+}
+
+//testUnified2(path.join(__dirname, 'unified2.file'));
+testUnified2(path.join(__dirname, 'unified2-legacy.log'));
+//testUnified2(path.join(__dirname, 'unified2-current.log'));
