@@ -53,6 +53,17 @@ To stop the parser, you can do `parser.stop()` which will trigger an end event.
 
 pass in `DEBUG=unified2` as an environment variable to turn on debug logging.
 
+### Is it fast? This is javascript after all.
+
+Pretty fast!  IO is async too, so by parallelizing parsers you can increase performance.
+
+Here's reading ~4.6 MB and writing parsed objects (~34MB) to stdout.
+
+```
+unified2 (master*) $ time node tests/test.js > /tmp/test.js.output                                                                                                                                                                ~/src/unified2
+node tests/test.js > /tmp/test.js  12.16s user 0.84s system 103% cpu 12.621 total
+```
+
 ## License
 
 Copyright (C) 2013 Threat Stack, Inc (https://www.threatstack.com) 
