@@ -61,7 +61,7 @@ To stop the parser, you can do `parser.stop()` which will trigger an end event.
 ### Bookmark
 
 To read the current bookmark, you can use `parser.last_read_position`,
-which is the offset after the last read unified2 event. Useful after a 'nodata'
+which is the offset after the last read unified2 event. Useful after a 'eof'
 event or 'end' event if you wish to resume parsing again later,
 you can pass this into the `offset: <value>` parameter in the Parser
 constructor.
@@ -72,22 +72,21 @@ pass in `DEBUG=unified2` as an environment variable to turn on debug logging.
 
 ## Is it fast? This is javascript after all.
 
-Pretty fast!  IO is async too, so by parallelizing parsers you can increase performance.
+In tests, parsing happens at about ~7000k/events per second.  Obviously, this 
+slows down as you add processing and IO.
 
 Here's reading ~4.6 MB and writing parsed objects (~34MB) to stdout.
-
 ```
 unified2 (master*) $ time node tests/test.js > /tmp/test.js.output                                                                                                                                                                ~/src/unified2
-node tests/test.js > /tmp/test.js  12.16s user 0.84s system 103% cpu 12.621 total
+node tests/test.js > /tmp/test  11.67s user 0.38s system 100% cpu 11.977 total
 ```
 ## Missing?
 
 Right now, this is just a bare bones parser. E.g., the pcaps and extra data 
 are not correlated with the ids event messages.  This is intentional.  
 
-I'll be releasing a nice utility that does this, plus all of the fancy stuff 
-like monitor directories with blob support with output plugins similar 
-to Barnyard2 in the very near future.
+Please refer to Pigsty (https://github.com/threatstack/pigsty) for a more
+complete unified2 parser and plugin framework for handling the output.
 
 ## Bug Reporting
 

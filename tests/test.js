@@ -7,7 +7,7 @@ var ip = require('ip');
 var path = require('path');
 
 function testUnified2(file) {
-  var parser = new Parser(file);
+  var parser = new Parser(file, { tail: false });
   
   parser.on('data', function(data) {
     console.log(data);
