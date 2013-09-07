@@ -1,6 +1,6 @@
 {
   "name": "unified2",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "unified2 parser",
   "main": "./lib/unified2",
   "scripts": {

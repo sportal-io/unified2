@@ -27,6 +27,7 @@ function testUnified2(file) {
 
 }
 
+testUnified2(path.join(__dirname, 'bad.file'));
 testUnified2(path.join(__dirname, 'unified2.file'));
 testUnified2(path.join(__dirname, 'unified2-legacy.log'));
 testUnified2(path.join(__dirname, 'unified2-current.log'));
