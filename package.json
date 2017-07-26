@@ -16,6 +16,6 @@
     "ref-array": "0.0.3",
     "ip": "0.0.5",
     "debug": "~0.7.2",
-    "pcap": "https://github.com/threatstack/node_pcap/tarball/develop"
+    "pcap": "https://github.com/sportal-io/node_pcap"
   }
 }
